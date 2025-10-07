@@ -31,19 +31,19 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "your.email@example.com",
+      value: "umeshg2059@gmail.com",
       href: "mailto:your.email@example.com",
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+91 98765 43210",
+      value: "+91 8738886270",
       href: "tel:+919876543210",
     },
     {
       icon: MapPin,
       title: "Location",
-      value: "Your City, India",
+      value: "Banglore, India",
       href: "#",
     },
   ];

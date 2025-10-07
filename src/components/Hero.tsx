@@ -67,7 +67,7 @@ const Hero = () => {
           >
             <p className="text-lg text-muted-foreground">Hello, I'm</p>
             <h1 className="text-5xl md:text-7xl font-bold text-gradient">
-              Your Name
+              Umesh Gupta
             </h1>
           </motion.div>
 
@@ -118,7 +118,7 @@ const Hero = () => {
             className="flex gap-4 justify-center pt-8"
           >
             <a
-              href="https://github.com"
+              href="https://github.com/umesh2059"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
@@ -126,7 +126,7 @@ const Hero = () => {
               <Github className="h-5 w-5" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/umesh-gupta-976676309/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
@@ -134,7 +134,7 @@ const Hero = () => {
               <Linkedin className="h-5 w-5" />
             </a>
             <a
-              href="mailto:your.email@example.com"
+              href="mailto:umeshg2059@gmail.com"
               className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
             >
               <Mail className="h-5 w-5" />

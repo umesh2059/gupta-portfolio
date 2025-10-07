@@ -108,21 +108,21 @@ const Experience = () => {
               <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-primary/30"></div>
               <div className="space-y-8">
                 <TimelineItem
-                  year="2023 - 2026"
+                  year="2023 - 2027"
                   title="Bachelor of Technology"
                   subtitle="Computer Science Engineering"
                   isInView={isInView}
                   delay={0.8}
                 />
                 <TimelineItem
-                  year="2021 - 2023"
+                  year="2021 - 2022"
                   title="Higher Secondary Education"
                   subtitle="Science Stream"
                   isInView={isInView}
                   delay={0.9}
                 />
                 <TimelineItem
-                  year="2021"
+                  year="2020"
                   title="Secondary Education"
                   subtitle="High School"
                   isInView={isInView}

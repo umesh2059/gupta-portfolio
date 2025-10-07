@@ -76,7 +76,7 @@ const About = () => {
                     Bachelor of Technology in Computer Science
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    Third Year Student | Expected Graduation: 2026
+                    Third Year Student | Expected Graduation: 2027
                   </p>
                 </div>
               </div>
