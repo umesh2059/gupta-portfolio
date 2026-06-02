@@ -53,94 +53,114 @@ const Hero = () => {
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }}></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center space-y-6"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          {/* Left side - Text content */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="space-y-2"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center space-y-6"
           >
-            <p className="text-lg text-muted-foreground">Hello, I'm</p>
-            <h1 className="text-5xl md:text-7xl font-bold text-gradient">
-              Umesh Gupta
-            </h1>
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="space-y-2"
+            >
+              <p className="text-lg text-muted-foreground">Hello, I'm</p>
+              <h1 className="text-5xl md:text-7xl font-bold text-gradient">
+                Umesh Gupta
+              </h1>
+            </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="h-16 md:h-20"
-          >
-            <h2 className="text-2xl md:text-4xl font-semibold text-foreground">
-              {text}
-              <span className="animate-pulse">|</span>
-            </h2>
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="h-16 md:h-20"
+            >
+              <h2 className="text-2xl md:text-4xl font-semibold text-foreground">
+                {text}
+                <span className="animate-pulse">|</span>
+              </h2>
+            </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
-          >
-            Third-year Computer Science student passionate about building
-            innovative web applications and solving complex problems
-          </motion.p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="text-lg md:text-xl text-muted-foreground max-w-2xl"
+            >
+              Third-year Computer Science student passionate about building
+              innovative web applications and solving complex problems
+            </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6"
-          >
-            <Button size="lg" className="gradient-primary text-white group">
-              <a href="#contact" className="flex items-center">
-                Get In Touch
-                <ArrowDown className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center pt-6"
+            >
+              <Button size="lg" className="gradient-primary text-white group">
+                <a href="#contact" className="flex items-center">
+                  Get In Touch
+                  <ArrowDown className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
+                </a>
+              </Button>
+              <Button size="lg" variant="outline" className="group">
+                <Download className="mr-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
+                Download Resume
+              </Button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+              className="flex gap-4 justify-center pt-8"
+            >
+              <a
+                href="https://github.com/umesh2059"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
+              >
+                <Github className="h-5 w-5" />
               </a>
-            </Button>
-            <Button size="lg" variant="outline" className="group">
-              <Download className="mr-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
-              Download Resume
-            </Button>
+              <a
+                href="https://www.linkedin.com/in/umesh-gupta-976676309/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href="mailto:umeshg2059@gmail.com"
+                className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
+              >
+                <Mail className="h-5 w-5" />
+              </a>
+            </motion.div>
           </motion.div>
 
+          {/* Right side - Profile Photo */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-            className="flex gap-4 justify-center pt-8"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="hidden md:flex justify-center items-center"
           >
-            <a
-              href="https://github.com/umesh2059"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
-            >
-              <Github className="h-5 w-5" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/umesh-gupta-976676309/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
-            >
-              <Linkedin className="h-5 w-5" />
-            </a>
-            <a
-              href="mailto:umeshg2059@gmail.com"
-              className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
-            >
-              <Mail className="h-5 w-5" />
-            </a>
+            <div className="relative">
+              <div className="absolute inset-0 gradient-primary opacity-20 rounded-2xl blur-2xl"></div>
+              <img
+                src="/image.jpg"
+                alt="Umesh Gupta"
+                className="relative w-80 h-80 rounded-2xl object-cover border-2 border-primary shadow-2xl"
+              />
+            </div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
 
       <motion.div
