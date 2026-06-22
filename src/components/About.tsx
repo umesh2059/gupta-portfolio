@@ -85,7 +85,7 @@ const About = () => {
             <div className="space-y-4">
               <h3 className="text-2xl font-semibold">My Journey</h3>
               <p className="text-muted-foreground leading-relaxed">
-                As a third-year Computer Science student, I've developed a strong
+                As a fourth-year Computer Science student, I've developed a strong
                 passion for full-stack web development. My journey began with
                 learning HTML and CSS, and has evolved into building complex
                 applications using the MERN stack.
