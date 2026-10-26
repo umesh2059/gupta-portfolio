@@ -1,133 +1,64 @@
-import { useState, useEffect } from "react";
-import { Moon, Sun, Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+import { Moon, Search, Sun } from "lucide-react";
+import { profile } from "@/data/resume";
+import { openCommandMenu } from "@/lib/actions";
+import { toggleTheme, useIsDark } from "@/hooks/useTheme";
+
+const links = [
+  { href: "#experience", label: "Experience" },
+  { href: "#projects", label: "Projects" },
+  { href: "#github", label: "GitHub" },
+];
+
+const isMac = typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.userAgent);
 
 const Navbar = () => {
-  const [isDark, setIsDark] = useState(true);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const isDark = useIsDark();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle("dark");
-  };
-
-  const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Experience", href: "#experience" },
-    { name: "Contact", href: "#contact" },
-  ];
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: "smooth" });
-    setIsMobileMenuOpen(false);
-  };
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "glass shadow-lg py-4" : "bg-transparent py-6"
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        scrolled ? "bg-bg/80 backdrop-blur-md border-line" : "bg-transparent border-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 flex items-center justify-between">
-        <a
-          href="#home"
-          className="text-2xl font-bold text-gradient"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection("#home");
-          }}
-        >
-          Portfolio
+      <div className="mx-auto max-w-[720px] px-6 h-14 flex items-center justify-between gap-4">
+        <a href="#top" className="font-mono text-[13px] font-bold">
+          <span className="text-fg4">~/</span>
+          <span className="text-gradient">{profile.initials.toLowerCase()}</span>
         </a>
-
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection(item.href);
-              }}
-              className="text-foreground/80 hover:text-primary transition-colors duration-300 font-medium"
-            >
-              {item.name}
-            </a>
-          ))}
-          <Button
-            variant="ghost"
-            size="icon"
+        <div className="flex items-center gap-5">
+          <div className="hidden sm:flex gap-5">
+            {links.map((l) => (
+              <a key={l.href} href={l.href} className="text-xs font-medium text-fg3 hover:text-fg transition-colors">
+                {l.label}
+              </a>
+            ))}
+          </div>
+          <button
+            onClick={openCommandMenu}
+            aria-label="Open command menu"
+            className="inline-flex items-center gap-2 rounded-md border border-line bg-surface/60 px-2.5 py-1 text-xs text-fg3 hover:text-fg hover:border-accent/40 transition-colors"
+          >
+            <Search className="h-3.5 w-3.5" />
+            <kbd className="font-mono text-[10px]">{isMac ? "⌘" : "Ctrl"} K</kbd>
+          </button>
+          <button
             onClick={toggleTheme}
-            className="rounded-full"
+            aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+            className="text-fg3 hover:text-accent transition-colors"
           >
-            {isDark ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
-          </Button>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            className="rounded-full"
-          >
-            {isDark ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="rounded-full"
-          >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
-          </Button>
+            {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden glass mt-4 mx-4 rounded-lg p-6 space-y-4 animate-fade-in">
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection(item.href);
-              }}
-              className="block text-foreground/80 hover:text-primary transition-colors duration-300 font-medium text-lg"
-            >
-              {item.name}
-            </a>
-          ))}
-        </div>
-      )}
     </nav>
   );
 };
