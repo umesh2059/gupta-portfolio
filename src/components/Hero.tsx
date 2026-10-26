@@ -3,7 +3,7 @@ import { Check, Copy, FileDown, Github, Linkedin, Mail } from "lucide-react";
 import XLogo from "@/components/XLogo";
 import NowStrip from "@/components/NowStrip";
 import { profile, socials } from "@/data/resume";
-import { copyEmail, downloadResume } from "@/lib/actions";
+import { copyEmail, downloadResume, resumeFileName } from "@/lib/actions";
 import { useTypeLoop, useTypeOnce } from "@/hooks/useTypewriter";
 
 const links = [
@@ -28,7 +28,7 @@ const Hero = () => {
 
   return (
     <section id="top" className="pt-28 pb-16">
-      <div className="fade-up fade-up-1 flex items-start justify-between gap-6 mb-5">
+      <div className="fade-up fade-up-1 flex items-center justify-between gap-6 mb-6">
         <div className="min-w-0">
           <h1
             aria-label={profile.name}
@@ -61,15 +61,22 @@ const Hero = () => {
             )}
           </div>
         </div>
-        <div className="relative shrink-0">
-          <div aria-hidden className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-accent to-accent2 opacity-40 blur-md" />
-          <img
-            src={profile.photo}
-            alt={profile.name}
-            width={76}
-            height={76}
-            className="relative h-[76px] w-[76px] rounded-xl object-cover border border-line"
+        <div className="group relative shrink-0">
+          <div
+            aria-hidden
+            className="absolute -inset-1.5 rounded-[22px] bg-gradient-to-br from-accent to-accent2 opacity-40 blur-lg transition-opacity duration-500 group-hover:opacity-70"
           />
+          <div className="relative h-24 w-24 sm:h-36 sm:w-36 overflow-hidden rounded-2xl border-2 border-bg ring-1 ring-line transition-transform duration-500 group-hover:scale-[1.03] group-hover:-rotate-1">
+            <img
+              src={profile.photo}
+              alt={profile.name}
+              width={144}
+              height={144}
+              // The photo is a wide shot, so zoom in on the face (adjust photoFocus in resume.ts).
+              style={{ transformOrigin: profile.photoFocus, objectPosition: profile.photoFocus }}
+              className="h-full w-full object-cover scale-[1.9]"
+            />
+          </div>
         </div>
       </div>
 
@@ -100,13 +107,18 @@ const Hero = () => {
             {copied ? <Check className="h-3.5 w-3.5 text-accent2" /> : <Copy className="h-3.5 w-3.5" />}
           </button>
         </div>
-        <button
-          onClick={downloadResume}
-          className="inline-flex items-center gap-[7px] text-xs font-medium text-black px-3.5 py-1.5 rounded-md bg-gradient-to-r from-accent to-amber-300 hover:brightness-110 transition"
+        <a
+          href={profile.resumeUrl}
+          download={resumeFileName}
+          onClick={(e) => {
+            e.preventDefault();
+            downloadResume();
+          }}
+          className="group inline-flex items-center gap-[7px] text-xs font-medium text-black px-3.5 py-1.5 rounded-md bg-gradient-to-r from-accent to-amber-300 hover:brightness-110 transition"
         >
-          <FileDown className="h-3.5 w-3.5" />
-          Resume
-        </button>
+          <FileDown className="h-3.5 w-3.5 transition-transform group-hover:translate-y-0.5" />
+          Download Resume
+        </a>
       </div>
     </section>
   );

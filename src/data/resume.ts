@@ -11,6 +11,7 @@ export const profile = {
   email: "umeshg2059@gmail.com",
   phone: "", // e.g. "+91 87388 86270" — leave empty to keep it private
   photo: "/image.jpg",
+  photoFocus: "52% 70%", // where your face is in the photo (x% y%); the frame zooms in on this point
   resumeUrl: "/resume.pdf",
   githubUsername: "umesh2059",
   openToWork: true,
@@ -115,7 +116,7 @@ export const projects: Project[] = [
 export const skills: { group: string; items: string[] }[] = [
   { group: "Frontend", items: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "HTML / CSS"] },
   { group: "Backend", items: ["Node.js", "Express", "REST APIs", "Firebase", "PHP"] },
-  { group: "Database", items: ["MongoDB", "MySQL"] },
+  { group: "Database", items: ["PostgreSQL", "Prisma ORM", "Neon", "MongoDB", "MySQL"] },
   { group: "Tools", items: ["Git", "GitHub", "Vercel", "Postman", "VS Code"] },
 ];
 

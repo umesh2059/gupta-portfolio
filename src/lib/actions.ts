@@ -10,11 +10,31 @@ export const copyEmail = async () => {
   }
 };
 
-export const downloadResume = () => {
-  const a = document.createElement("a");
-  a.href = profile.resumeUrl;
-  a.download = `${profile.name.replace(/\s/g, "_")}_Resume.pdf`;
-  a.click();
+export const resumeFileName = `${profile.name.replace(/\s/g, "_")}_Resume.pdf`;
+
+/** Downloads the resume straight to the visitor's device (no new tab, no PDF viewer). */
+export const downloadResume = async () => {
+  const id = toast.loading("Preparing resume…");
+  try {
+    const res = await fetch(profile.resumeUrl);
+    const blob = await res.blob();
+    // A missing file falls back to index.html on most hosts, so check it's really a PDF.
+    if (!res.ok || !blob.type.includes("pdf")) throw new Error("not a pdf");
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = resumeFileName;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    toast.success("Resume downloaded", { id, description: resumeFileName });
+  } catch {
+    toast.error("Resume isn't available right now", {
+      id,
+      description: `Email me at ${profile.email} and I'll send it over.`,
+    });
+  }
 };
 
 export const scrollToSection = (id: string) =>
