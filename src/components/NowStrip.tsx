@@ -26,7 +26,7 @@ const Item = ({ icon: Icon, label, children }: { icon: typeof Clock; label: stri
 
 const NowStrip = () => {
   const time = useClock(profile.timeZone);
-  const { data: repos } = useGitHubRepos(profile.githubUsername);
+  const { data: repos, isError } = useGitHubRepos(profile.githubUsername);
   const latest = repos?.[0]; // the API returns repos sorted by most recent push
   const city = profile.location.split(",")[0];
 
@@ -44,6 +44,10 @@ const NowStrip = () => {
             className="hover:text-accent transition-colors"
           >
             {timeAgo(latest.pushed_at)} → {latest.name}
+          </a>
+        ) : isError ? (
+          <a href={`https://github.com/${profile.githubUsername}`} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+            see GitHub ↗
           </a>
         ) : (
           "…"
