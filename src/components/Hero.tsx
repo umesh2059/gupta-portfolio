@@ -16,7 +16,7 @@ const buttonClass =
   "inline-flex items-center gap-[7px] text-xs text-fg3 px-3.5 py-1.5 rounded-md border border-line bg-surface/60 hover:text-fg hover:border-accent/40 transition-colors";
 
 const Hero = () => {
-  const { typed, done } = useTypeOnce(profile.name.toLowerCase());
+  const { typed, done } = useTypeOnce(profile.name);
   const role = useTypeLoop(profile.roles);
   const [copied, setCopied] = useState(false);
 
@@ -61,12 +61,8 @@ const Hero = () => {
             )}
           </div>
         </div>
-        <div className="group relative shrink-0">
-          <div
-            aria-hidden
-            className="absolute -inset-1.5 rounded-[22px] bg-gradient-to-br from-accent to-accent2 opacity-40 blur-lg transition-opacity duration-500 group-hover:opacity-70"
-          />
-          <div className="relative h-24 w-24 sm:h-36 sm:w-36 overflow-hidden rounded-2xl border-2 border-bg ring-1 ring-line transition-transform duration-500 group-hover:scale-[1.03] group-hover:-rotate-1">
+        <div className="shrink-0">
+          <div className="h-24 w-24 sm:h-36 sm:w-36 overflow-hidden rounded-2xl border border-line">
             <img
               src={profile.photo}
               alt={profile.name}

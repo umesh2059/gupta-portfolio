@@ -111,6 +111,16 @@ export const projects: Project[] = [
     tech: ["TypeScript", "React", "Auth", "Generative AI"],
     live: "https://ai-influencer-ten.vercel.app",
   },
+  {
+    repo: "DevMatch_-Developer-collaboration-platform-",
+    title: "DevMatch",
+    subtitle: "Dev Collaboration",
+    color: "text-sky-600 dark:text-sky-400",
+    summary:
+      "Developer collaboration platform: post a project, list your skills, get matched with teammates, then run the team with a task board and real-time chat.",
+    tech: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Socket.IO"],
+    live: "https://dev-match-developer-collaboration-p.vercel.app",
+  },
 ];
 
 export const skills: { group: string; items: string[] }[] = [
